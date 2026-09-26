@@ -48,10 +48,31 @@ public class Inventory{
             }
         }
     }
+    void sellProduct(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Welcome to Sold products!!");
+        System.out.println("---Add sold products---");
+        System.out.println("Enter the product name sold:");
+        String name=sc.next();
+        System.out.println("Enter the quantity sold:");
+        Float sold=sc.nextFloat();
+        for (Product p:products){
+            if (p.name.equalsIgnoreCase(name)){
+                if (sold<=p.quantity){
+                    p.quantity=p.quantity-sold;
+                    p.monthlyConsumed=p.monthlyConsumed+sold;
+                    System.out.println("Sales recorded successfully!!");
+                }
+                else{
+                    System.out.println("Stock unavailable!!");
+                }
+            }
+        }
+    }
     void report(){
-        
+
     }
     void product(){
-
+        
     }
 }

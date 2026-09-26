@@ -5,4 +5,5 @@ public class Product {
     Float price;
     String unit;
     Float minimumStock;
+    Float monthlyConsumed;
 }

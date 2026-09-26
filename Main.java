@@ -6,6 +6,7 @@ public class Main{
         System.out.println("WELCOME TO STOCKFLOW!!");
         System.out.println("----MENU CARD----");
         System.out.println("1.Add product");
+        System.out.println("2.Product sold");
         System.out.println("2.Product availability");
         System.out.println("3.Shortage alert");
         System.out.println("4.Monthly report");
@@ -17,15 +18,18 @@ public class Main{
                 inventory.addProduct();
                 break;
             case 2:
-                inventory.availability();
+                inventory.sellProduct();
                 break;
             case 3:
-                inventory.shortage();
+                inventory.availability();
                 break;
             case 4:
-                inventory.report();
+                inventory.shortage();
                 break;
             case 5:
+                inventory.report();
+                break;
+            case 6:
                 inventory.product();
                 break;
             default:
