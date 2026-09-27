@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
 public class Inventory{
     ArrayList<Product> products = new ArrayList<>();
     void addProduct(){
@@ -17,6 +18,8 @@ public class Inventory{
         p.unit=sc.next();
         System.out.println("Enter the price:");
         p.price=sc.nextFloat();
+        System.out.println("Enter the price in which u bought:");
+        p.costPrice=sc.nextFloat();
         System.out.println("Enter the minimum stock:");
         p.minimumStock=sc.nextFloat();
         products.add(p);
@@ -52,27 +55,45 @@ public class Inventory{
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to Sold products!!");
         System.out.println("---Add sold products---");
+        System.out.println("Enter the month in number:");
+        int reportMonth=sc.nextInt();
         System.out.println("Enter the product name sold:");
         String name=sc.next();
         System.out.println("Enter the quantity sold:");
         Float sold=sc.nextFloat();
         for (Product p:products){
             if (p.name.equalsIgnoreCase(name)){
+                int currentMonth=LocalDate.now().getMonthValue();
                 if (sold<=p.quantity){
+                    if (reportMonth!=currentMonth){
+                        p.monthlyConsumed=0;
+                        p.reportMonth=currentMonth;
+                    }
                     p.quantity=p.quantity-sold;
                     p.monthlyConsumed=p.monthlyConsumed+sold;
                     System.out.println("Sales recorded successfully!!");
                 }
                 else{
-                    System.out.println("Stock unavailable!!");
+                    System.out.println("Not enough stock available!!");
                 }
+                return;
             }
         }
+        System.out.println("Product not found!!");
     }
     void report(){
-
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Welcome to report!!");
+        System.out.println("====MONTHLY REPORT====");
+        float totalProfit=0;
+        float totalLoss=0;
+        for (Product p:products){
+            float revenue=p.monthlyConsumed*p.price;
+            float cost=p.monthlyConsumed*p.costPrice;
+            float result=revenue-cost;
+        }
     }
     void product(){
-        
+
     }
 }
