@@ -1,9 +1,11 @@
 public class Product {
     String name;
     String status;
-    Float quantity;
-    Float price;
+    float quantity;
+    float price;
     String unit;
-    Float minimumStock;
-    Float monthlyConsumed;
+    float minimumStock;
+    float monthlyConsumed;
+    int reportMonth;
+    float costPrice;
 }

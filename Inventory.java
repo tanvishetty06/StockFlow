@@ -30,14 +30,17 @@ public class Inventory{
         System.out.println("---Check the product status---");
         System.out.println("Enter the product name:");
         String name=sc.next();
+        boolean found=false;
         for (Product p:products){
             if (p.name.equals(name)){
                 System.out.println("Availability: "+p.status);
                 System.out.println("Quantity: "+p.quantity+" "+p.unit);
+                found=true;
+                break;
             }
-            else{
-                System.out.println("Product not found!!");
-            }
+        }
+        if (!found){
+            System.out.println("Product not found!!");
         }
     }
     void shortage(){
@@ -91,9 +94,44 @@ public class Inventory{
             float revenue=p.monthlyConsumed*p.price;
             float cost=p.monthlyConsumed*p.costPrice;
             float result=revenue-cost;
+            System.out.println("Product name:"+p.name);
+            System.out.println("Quantity sold:"+p.quantity);
+            if (result>0){
+                System.out.println("Profit:"+result);
+                totalProfit=totalProfit+result;
+            }
+            else if (result<0){
+                System.out.println("Loss:"+(-result));
+                totalLoss=totalLoss+(-result);
+            }
+            else {
+                System.out.println("No profit or loss");
+            }
         }
+        System.out.println("Total Profit:"+totalProfit);
+        System.out.println("Total Loss:"+totalLoss);
     }
     void product(){
-
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Welcome to analysis!!");
+        System.out.println("---Product Analysis---");
+        if (products.size()==0){
+            System.out.println("No product available!");
+            return;
+        }
+        Product highest=products.get(0);
+        Product least=products.get(0);
+        for (Product p:products){
+            if (p.monthlyConsumed>highest.monthlyConsumed){
+                highest=p;
+            }
+            if (p.monthlyConsumed<least.monthlyConsumed){
+                least=p;
+            }
+        }
+        System.out.println("Highest Sold product:"+highest.name);
+        System.out.println("Quantity sold:"+highest.monthlyConsumed);
+        System.out.println("Least Sold product:"+least.name);
+        System.out.println("Quantity Sold:"+least.monthlyConsumed);
     }
 }
